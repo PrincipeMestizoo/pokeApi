@@ -1,0 +1,5 @@
+<div class="pagination">
+  <button class="btn" (click)="previous.emit()" [disabled]="!canGoBack">← Anterior</button>
+  <span class="pagination__label">{{ rangeLabel }}</span>
+  <button class="btn" (click)="next.emit()" [disabled]="!canGoForward">Siguiente →</button>
+</div>

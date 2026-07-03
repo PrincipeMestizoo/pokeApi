@@ -1,0 +1,9 @@
+<div class="search-bar">
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($any($event.target).value)"
+    class="search-bar__input"
+  />
+</div>

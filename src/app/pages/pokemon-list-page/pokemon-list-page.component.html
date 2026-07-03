@@ -1,0 +1,38 @@
+<div class="page">
+  <header class="page__header">
+    <h1>Pokédex <span class="page__header-accent"></span></h1><br>
+  </header>
+
+  <app-search-bar
+    [value]="searchTerm"
+    placeholder="Buscar por nombre o id (ej. pikachu, 25)…"
+    (valueChange)="onSearchChange($event)"
+  ></app-search-bar>
+
+  <app-loading-spinner *ngIf="isLoading" message="Cargando Pokémon…"></app-loading-spinner>
+
+  <app-error-banner
+    *ngIf="errorMessage && !isLoading"
+    [message]="errorMessage"
+    (retry)="retry()"
+  ></app-error-banner>
+
+  <div class="grid" *ngIf="!isLoading && !errorMessage">
+    <app-pokemon-card
+      *ngFor="let pokemon of pokemons; trackBy: trackByPokemonId"
+      [pokemon]="pokemon"
+    ></app-pokemon-card>
+
+    <p class="empty" *ngIf="pokemons.length === 0">No hay resultados para mostrar.</p>
+  </div>
+
+  <app-pagination
+    *ngIf="!isSearchMode && !isLoading && !errorMessage"
+    [offset]="offset"
+    [pageSize]="pageSize"
+    [itemsShown]="pokemons.length"
+    [totalCount]="totalCount"
+    (next)="nextPage()"
+    (previous)="previousPage()"
+  ></app-pagination>
+</div>

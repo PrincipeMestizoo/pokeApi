@@ -1,0 +1,19 @@
+<article class="card">
+  <div class="card__image-wrap">
+    <img [src]="pokemon.image" [alt]="pokemon.name" class="card__image" />
+  </div>
+  <h2 class="card__name">{{ pokemon.name | capitalize }}</h2>
+
+  <div class="card__types">
+    <span class="badge" [ngClass]="'badge--' + type" *ngFor="let type of pokemon.types">
+      {{ type | capitalize }}
+    </span>
+  </div>
+
+  <ul class="card__stats">
+    <li><strong>#{{ pokemon.id }}</strong></li>
+    <li>Altura: {{ formattedHeight }}</li>
+    <li>Peso: {{ formattedWeight }}</li>
+    <li>Exp. base: {{ pokemon.baseExperience }}</li>
+  </ul>
+</article>
